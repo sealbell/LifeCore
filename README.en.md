@@ -4,7 +4,7 @@
 
 A DeepSeek Harness plugin for persistent identity, memory, and gradual personality growth.
 
-[中文](README.md) · [Project design (Chinese)](docs/project-design.md)
+[中文](README.md) · [Architecture V1 (Chinese)](docs/architecture/v1.md) · [Module discussion guide (Chinese)](docs/architecture/discussions.md) · [Project design (Chinese)](docs/project-design.md)
 
 ## Purpose
 
@@ -24,7 +24,9 @@ Users install DSH, a compatible QQ gateway, and other external software themselv
 
 **Design and documentation only. There is no runnable plugin release yet.**
 
-The first milestone is a plugin that loads in DSH, creates one persistent identity, and restores it after reload or restart. Memory and growth validation come next, followed by controlled platform integration.
+Architecture V1 documents 15 modules, their responsibilities, proposed approaches, boundaries, and reference implementations. Detailed module design will continue in separate conversations using the linked discussion guide. V1 is an architecture baseline, not a software release.
+
+The first milestone is a plugin that loads in DSH, creates one persistent identity, and restores it after reload or restart. A controlled QQ private-chat loop with basic memory follows, then relationships, emotion, personality evolution, group chat, Bilibili, and autonomous activities. Privacy, persistence, and pause controls are required from the first working loop.
 
 ## Principles
 

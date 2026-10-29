@@ -4,7 +4,7 @@
 
 A DeepSeek Harness plugin for persistent identity, memory, and gradual personality growth.
 
-[English](README.en.md) · [项目设计](docs/project-design.md)
+[English](README.en.md) · [架构 V1](docs/architecture/v1.md) · [模块讨论指南](docs/architecture/discussions.md) · [项目总体设计](docs/project-design.md)
 
 ## 为什么做 LifeCore
 
@@ -32,9 +32,9 @@ DSH、QQ 网关及其他外部软件由用户自行安装，不随本项目分�
 
 **设计与文档阶段，尚无可运行的插件版本。**
 
-当前仓库包含项目说明、[项目设计](docs/project-design.md)和运行数据忽略规则。上述能力均为规划，不是已经实现的功能。
+当前已整理[第一版架构基线](docs/architecture/v1.md)，涵盖 15 个模块的职责、初步做法、协作边界和参考源码。各模块的算法、数据结构及接口将在后续新会话中逐项详细讨论，入口见[模块讨论指南](docs/architecture/discussions.md)。上述能力均为规划，不是已经实现的功能。
 
-第一个验证目标是：插件能够在 DSH 中加载，建立唯一生命身份，并在插件重载和宿主重启后恢复。随后验证记忆与成长，再接入受控 QQ 私聊和 B站。
+第一个验证目标是：插件能够在 DSH 中加载，建立唯一生命身份，并在插件重载和宿主重启后恢复。随后完成受控 QQ 私聊与基础记忆闭环，逐步深化关系、情绪和人格成长，再扩展群聊、B站与自主活动。隐私、持久化和暂停能力从最小闭环开始具备。
 
 ## 设计原则
 
