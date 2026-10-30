@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "research_date": "2026-10-30",
+  "timezone": "Asia/Shanghai",
+  "purpose": "Architecture provenance; no dependency installation or benchmark reproduction",
+  "repositories": [
+    {
+      "id": "R01",
+      "repository": "NeverENG/SeekMemory",
+      "url": "https://github.com/NeverENG/SeekMemory",
+      "commit": "e895a4fa5986db4ac97573c95a832896032d5650",
+      "commit_date_utc": "2026-10-30T03:25:00Z",
+      "commit_url": "https://github.com/NeverENG/SeekMemory/commit/e895a4fa5986db4ac97573c95a832896032d5650",
+      "review_depth": "core_source",
+      "pinned_file_rechecked": [
+        "recall/score.py"
+      ],
+      "other_paths_read_in_research_window": [
+        "recall/pipeline.py",
+        "recall/gate.py",
+        "benchmarks/README.md",
+        "benchmarks/results/dream_tradeoff.md"
+      ],
+      "full_system_executed": false,
+      "notes": "Unpinned path readings are not claimed byte-identical to this snapshot; recheck before reuse."
+    },
+    {
+      "id": "R02",
+      "repository": "Mieksido/surfcore",
+      "url": "https://github.com/Mieksido/surfcore",
+      "commit": "ff78e1173bd2204e4becaf8cf4356be987943159",
+      "commit_date_utc": "2026-10-30T05:50:00Z",
+      "commit_url": "https://github.com/Mieksido/surfcore/commit/ff78e1173bd2204e4becaf8cf4356be987943159",
+      "review_depth": "core_source",
+      "pinned_file_rechecked": [
+        "src/memory-card.js"
+      ],
+      "other_paths_read_in_research_window": [
+        "plugins/surfcore/lib/memory-card.js",
+        "docs/guides/MEMORY_CARD.md"
+      ],
+      "full_system_executed": false,
+      "notes": "Unpinned path readings are not claimed byte-identical to this snapshot; recheck before reuse."
+    },
+    {
+      "id": "R03",
+      "repository": "TencentCloud/TencentDB-Agent-Memory",
+      "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory",
+      "commit": "ecc01a545da0b2ac6cae2f0f0af0d39d41469793",
+      "commit_date_utc": "2026-10-28T14:33:20Z",
+      "commit_url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/ecc01a545da0b2ac6cae2f0f0af0d39d41469793",
+      "review_depth": "core_source",
+      "pinned_file_rechecked": [
+        "MemoryCore/src/core/hooks/auto-recall.ts"
+      ],
+      "other_paths_read_in_research_window": [
+        "MemoryCore/src/core/store/tokenize.ts",
+        "MemoryCore/src/core/tdai-core.ts"
+      ],
+      "full_system_executed": false,
+      "notes": "Unpinned path readings are not claimed byte-identical to this snapshot; recheck before reuse."
+    },
+    {
+      "id": "R04",
+      "repository": "Tencent-Hunyuan/Hy-Memory",
+      "url": "https://github.com/Tencent-Hunyuan/Hy-Memory",
+      "commit": "988667cd876fb80bee6d618482f78a2fe426402c",
+      "commit_date_utc": "2026-10-28T14:07:22Z",
+      "commit_url": "https://github.com/Tencent-Hunyuan/Hy-Memory/commit/988667cd876fb80bee6d618482f78a2fe426402c",
+      "review_depth": "core_source",
+      "pinned_file_rechecked": [
+        "hy_memory/agent/reconciler.py"
+      ],
+      "other_paths_read_in_research_window": [
+        "docs/pro_graph_design.md",
+        "docs/hy_memory_search_skill.md"
+      ],
+      "full_system_executed": false,
+      "notes": "Unpinned path readings are not claimed byte-identical to this snapshot; recheck before reuse."
+    },
+    {
+      "id": "R05",
+      "repository": "plur-ai/plur",
+      "url": "https://github.com/plur-ai/plur",
+      "commit": "53d576d106bbac631ab5cc6ced98cce02b92b848",
+      "commit_date_utc": "2026-10-28T21:55:15Z",
+      "commit_url": "https://github.com/plur-ai/plur/commit/53d576d106bbac631ab5cc6ced98cce02b92b848",
+      "review_depth": "core_source",
+      "pinned_file_rechecked": [
+        "packages/core/src/hybrid-search.ts"
+      ],
+      "other_paths_read_in_research_window": [
+        "packages/core/test/hybrid-meaning-ranking.test.ts",
+        "packages/dsh/src"
+      ],
+      "full_system_executed": false,
+      "notes": "Unpinned path readings are not claimed byte-identical to this snapshot; recheck before reuse."
+    },
+    {
+      "id": "R06",
+      "repository": "haitang1/dsh-memory",
+      "url": "https://github.com/haitang1/dsh-memory",
+      "commit": "15de1c791bbcb5be2c9b0c2096eddedcaa61cc17",
+      "commit_date_utc": "2026-09-30T14:42:19Z",
+      "commit_url": "https://github.com/haitang1/dsh-memory/commit/15de1c791bbcb5be2c9b0c2096eddedcaa61cc17",
+      "review_depth": "selected_source",
+      "pinned_file_rechecked": [],
+      "other_paths_read_in_research_window": [
+        "lib/store.js",
+        "README.md"
+      ],
+      "full_system_executed": false,
+      "notes": "Unpinned path readings are not claimed byte-identical to this snapshot; recheck before reuse."
+    },
+    {
+      "id": "R07",
+      "repository": "LittleBlackTong/dsh-plugin-memory",
+      "url": "https://github.com/LittleBlackTong/dsh-plugin-memory",
+      "commit": "eb568c1e9d551428b46b72748ce63c8e69d389c6",
+      "commit_date_utc": "2026-10-16T02:22:59Z",
+      "commit_url": "https://github.com/LittleBlackTong/dsh-plugin-memory/commit/eb568c1e9d551428b46b72748ce63c8e69d389c6",
+      "review_depth": "selected_source",
+      "pinned_file_rechecked": [],
+      "other_paths_read_in_research_window": [
+        "lib/boot.js",
+        "lib/recall-nudge.js"
+      ],
+      "full_system_executed": false,
+      "notes": "Unpinned path readings are not claimed byte-identical to this snapshot; recheck before reuse."
+    },
+    {
+      "id": "R08",
+      "repository": "vpromise/dsh-memory",
+      "url": "https://github.com/vpromise/dsh-memory",
+      "commit": "1e1109b08890e9b3aa12cce4962e28634a2cfe65",
+      "commit_date_utc": "2026-08-13T16:11:31Z",
+      "commit_url": "https://github.com/vpromise/dsh-memory/commit/1e1109b08890e9b3aa12cce4962e28634a2cfe65",
+      "review_depth": "selected_function_and_sample",
+      "pinned_file_rechecked": [],
+      "other_paths_read_in_research_window": [
+        "src/retrieve.ts"
+      ],
+      "full_system_executed": false,
+      "notes": "Isolated tokenizer sample executed in discussion; not end-to-end testing."
+    },
+    {
+      "id": "R09",
+      "repository": "deepseek-ai/deepseek-harness",
+      "url": "https://github.com/deepseek-ai/deepseek-harness",
+      "commit": "ce7073d51254c26cd63b22a60835b8f948deb447",
+      "commit_date_utc": "2026-10-29T16:13:15Z",
+      "commit_url": "https://github.com/deepseek-ai/deepseek-harness/commit/ce7073d51254c26cd63b22a60835b8f948deb447",
+      "review_depth": "host_contract_source",
+      "pinned_file_rechecked": [
+        "packages/core/agent/src/index.ts",
+        "packages/core/system-prompt/src/index.ts",
+        "packages/core/tools/src/index.ts",
+        "packages/core/session/src/index.ts",
+        "package.json"
+      ],
+      "other_paths_read_in_research_window": [],
+      "full_system_executed": false,
+      "notes": "Unpinned path readings are not claimed byte-identical to this snapshot; recheck before reuse."
+    },
+    {
+      "id": "R10",
+      "repository": "mem0ai/mem0",
+      "url": "https://github.com/mem0ai/mem0",
+      "commit": "26cdefb46600c0fa5953c4b5ee5003c125539fc4",
+      "commit_date_utc": "2026-10-26T14:51:39Z",
+      "commit_url": "https://github.com/mem0ai/mem0/commit/26cdefb46600c0fa5953c4b5ee5003c125539fc4",
+      "review_depth": "readme_and_paper",
+      "pinned_file_rechecked": [
+        "README.md"
+      ],
+      "other_paths_read_in_research_window": [],
+      "full_system_executed": false,
+      "notes": "README platform claims differ from 2025 paper and may include proprietary components."
+    },
+    {
+      "id": "R11",
+      "repository": "getzep/graphiti",
+      "url": "https://github.com/getzep/graphiti",
+      "commit": "72b5c59c06607e09ea855be61b6ff5a3446fc951",
+      "commit_date_utc": "2026-10-28T23:22:49Z",
+      "commit_url": "https://github.com/getzep/graphiti/commit/72b5c59c06607e09ea855be61b6ff5a3446fc951",
+      "review_depth": "readme_and_paper",
+      "pinned_file_rechecked": [
+        "README.md"
+      ],
+      "other_paths_read_in_research_window": [],
+      "full_system_executed": false,
+      "notes": "Unpinned path readings are not claimed byte-identical to this snapshot; recheck before reuse."
+    },
+    {
+      "id": "R12",
+      "repository": "letta-ai/letta",
+      "url": "https://github.com/letta-ai/letta",
+      "commit": "8816d3a8516893bfdc0fa14bfb1235226012e295",
+      "commit_date_utc": "2026-10-18T22:28:01Z",
+      "commit_url": "https://github.com/letta-ai/letta/commit/8816d3a8516893bfdc0fa14bfb1235226012e295",
+      "review_depth": "readme_and_historical_paper",
+      "pinned_file_rechecked": [
+        "README.md"
+      ],
+      "other_paths_read_in_research_window": [],
+      "full_system_executed": false,
+      "notes": "README redirects active development to letta-ai/letta-code; that repository not audited."
+    },
+    {
+      "id": "R13",
+      "repository": "agiresearch/A-mem",
+      "url": "https://github.com/agiresearch/A-mem",
+      "commit": "ceffb860f0712bbae97b184d440df62bc910ca8d",
+      "commit_date_utc": "2025-12-12T21:15:29Z",
+      "commit_url": "https://github.com/agiresearch/A-mem/commit/ceffb860f0712bbae97b184d440df62bc910ca8d",
+      "review_depth": "readme_and_paper_abstract",
+      "pinned_file_rechecked": [
+        "README.md"
+      ],
+      "other_paths_read_in_research_window": [],
+      "full_system_executed": false,
+      "notes": "Unpinned path readings are not claimed byte-identical to this snapshot; recheck before reuse."
+    },
+    {
+      "id": "R14",
+      "repository": "WujiangXu/Flex-Amem",
+      "url": "https://github.com/WujiangXu/Flex-Amem",
+      "commit": "37ba0ce2b4d14f6746e819b6a2d728ad74c364f2",
+      "commit_date_utc": "2026-10-28T19:40:42Z",
+      "commit_url": "https://github.com/WujiangXu/Flex-Amem/commit/37ba0ce2b4d14f6746e819b6a2d728ad74c364f2",
+      "review_depth": "readme_and_paper_abstract",
+      "pinned_file_rechecked": [
+        "README.md"
+      ],
+      "other_paths_read_in_research_window": [],
+      "full_system_executed": false,
+      "notes": "Unpinned path readings are not claimed byte-identical to this snapshot; recheck before reuse."
+    },
+    {
+      "id": "R15",
+      "repository": "xiaowu0162/LongMemEval",
+      "url": "https://github.com/xiaowu0162/LongMemEval",
+      "commit": "9e0b455f4ef0e2ab8f2e582289761153549043fc",
+      "commit_date_utc": "2026-05-11T22:49:24Z",
+      "commit_url": "https://github.com/xiaowu0162/LongMemEval/commit/9e0b455f4ef0e2ab8f2e582289761153549043fc",
+      "review_depth": "readme_and_paper_abstract",
+      "pinned_file_rechecked": [
+        "README.md"
+      ],
+      "other_paths_read_in_research_window": [],
+      "full_system_executed": false,
+      "notes": "Unpinned path readings are not claimed byte-identical to this snapshot; recheck before reuse."
+    },
+    {
+      "id": "R16",
+      "repository": "snap-research/locomo",
+      "url": "https://github.com/snap-research/locomo",
+      "commit": "3eb6f2c585f5e1699204e3c3bdf7adc5c28cb376",
+      "commit_date_utc": "2024-08-13T03:21:21Z",
+      "commit_url": "https://github.com/snap-research/locomo/commit/3eb6f2c585f5e1699204e3c3bdf7adc5c28cb376",
+      "review_depth": "readme_and_paper_abstract",
+      "pinned_file_rechecked": [
+        "README.MD"
+      ],
+      "other_paths_read_in_research_window": [],
+      "full_system_executed": false,
+      "notes": "Unpinned path readings are not claimed byte-identical to this snapshot; recheck before reuse."
+    }
+  ]
+}

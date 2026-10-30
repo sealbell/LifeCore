@@ -6,6 +6,8 @@ A DeepSeek Harness plugin for persistent identity, memory, and gradual personali
 
 [English](README.en.md) · [架构 V1](docs/architecture/v1.md) · [模块讨论指南](docs/architecture/discussions.md) · [项目总体设计](docs/project-design.md)
 
+开发讨论入口：[第一版十五模块需求单](docs/requirements/v1-requirements.md) · [完整架构与数据流](docs/architecture/v1-data-flow.md) · [架构总览图片](docs/architecture/assets/v1-architecture-overview.png)。需求范围和技术选型仍待会议确认。
+
 ## 为什么做 LifeCore
 
 我们希望 AI 不只存在于一次聊天中。
@@ -31,6 +33,8 @@ DSH、QQ 网关及其他外部软件由用户自行安装，不随本项目分�
 ## 当前进度
 
 **设计与文档阶段，尚无可运行的插件版本。**
+
+2026-10-30 已补充[完整记忆架构方案](docs/architecture/modules/M04-M09-memory-system.md)，贯通原始记录、记忆整理与检索、上下文组装和 DSH 回复；配有[研究来源与项目对比](docs/architecture/references/memory-research.md)及[验收方案](docs/architecture/modules/M04-M09-memory-evaluation.md)。这些是待实施的工程设计，不是已有功能。
 
 当前已整理[第一版架构基线](docs/architecture/v1.md)，涵盖 15 个模块的职责、初步做法、协作边界和参考源码。各模块的算法、数据结构及接口将在后续新会话中逐项详细讨论，入口见[模块讨论指南](docs/architecture/discussions.md)。上述能力均为规划，不是已经实现的功能。
 
