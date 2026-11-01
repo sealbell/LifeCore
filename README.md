@@ -32,7 +32,7 @@ DSH、QQ 网关及其他外部软件由用户自行安装，不随本项目分�
 
 ## 当前进度
 
-**设计与文档阶段，尚无可运行的插件版本。**
+**v0.1.0-alpha.1 已有可运行预览代码。** 最新已确认路线为 **DSH 宿主 + SnowLuma 普通 QQ**，覆盖此前文档中的候选建议。先看 [v0.1 启动与安装说明](docs/v0.1-quickstart.md)：出生草案、持久身份、隔离试聊、时间线、组件配置和浏览器进度基础已经实现。真实模型调用、QQ 账号收发和真实视频网站尚待验收；完整设计中的其他能力仍属规划。
 
 2026-10-30 已补充[完整记忆架构方案](docs/architecture/modules/M04-M09-memory-system.md)，贯通原始记录、记忆整理与检索、上下文组装和 DSH 回复；配有[研究来源与项目对比](docs/architecture/references/memory-research.md)及[验收方案](docs/architecture/modules/M04-M09-memory-evaluation.md)。这些是待实施的工程设计，不是已有功能。
 

@@ -24,7 +24,7 @@ Users install DSH, a compatible QQ gateway, and other external software themselv
 
 ## Status
 
-**Design and documentation only. There is no runnable plugin release yet.**
+**Runnable v0.1.0-alpha.1 preview code is available.** The confirmed route is DSH with SnowLuma for an ordinary QQ account. See the [quickstart (Chinese)](docs/v0.1-quickstart.md). Durable birth, isolated trial chat, event records, component settings, and browser progress foundations are implemented. Real model calls, real QQ messaging and live video sites still need acceptance testing; the full architecture remains a roadmap.
 
 The 2026-10-30 [memory architecture proposal (Chinese)](docs/architecture/modules/M04-M09-memory-system.md) connects durable events, memory processing and retrieval, context assembly, and DSH replies. It includes a [research/source register](docs/architecture/references/memory-research.md) and [evaluation specification](docs/architecture/modules/M04-M09-memory-evaluation.md). These are proposed designs, not implemented capabilities.
 
