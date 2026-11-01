@@ -161,6 +161,16 @@ class Store:
             else:
                 rows = self.rows("SELECT * FROM events WHERE scene NOT LIKE 'trial:%' ORDER BY seq DESC LIMIT 100")
             return {'events': rows}
+        if op == 'activity.save':
+            a = b.get('activity')
+            if not isinstance(a, dict):
+                raise DomainError('活动必须是对象')
+            value = a.get('position', 0)
+            if not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
+                raise DomainError('无效的播放位置')
+            clean = {k: a.get(k) for k in ('url', 'video_id', 'title', 'position', 'duration', 'status', 'observed_at', 'understanding')}
+            self.set('activity', clean)
+            return clean
         if op == 'export':
             return {'format': 'lifecore-preview-1', 'exported_at': now(), 'life': self.get('life'),
                     'events': self.rows("SELECT * FROM events WHERE scene NOT LIKE 'trial:%' ORDER BY seq"),
