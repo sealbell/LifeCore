@@ -50,3 +50,12 @@ temp/
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+# Python and local verification
+__pycache__/
+*.pyc
+.venv/
+.superpowers/
+test-results/
+playwright-report/
+*.tgz

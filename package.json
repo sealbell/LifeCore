@@ -1,0 +1,23 @@
+{
+  "name": "lifecore-dsh",
+  "version": "0.1.0-alpha.1",
+  "description": "LifeCore 生命核心 — DSH / SnowLuma 普通 QQ 预览版",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": { ".": "./src/index.js", "./client": "./src/client.js", "./package.json": "./package.json" },
+  "engines": { "node": ">=22.16.0", "dsh": "0.2.1-rc.3" },
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" }, "client": { "platform": "web", "inject": [] } },
+  "files": ["src", "web", "kernel/lifecore/*.py", "scripts", "tests/*.mjs", "tests/*.py", "cordis.patch.yml", "docs/v0.1-quickstart.md", "THIRD_PARTY.md", "ACKNOWLEDGEMENTS.md"],
+  "scripts": {
+    "test": "node scripts/test.mjs",
+    "test:node": "node --test tests/*.test.mjs",
+    "dev": "node scripts/dev.mjs",
+    "dev:dsh": "node scripts/start-dsh.mjs",
+    "doctor": "node scripts/doctor.mjs",
+    "verify:host": "node scripts/verify-host.mjs",
+    "test:ui": "node scripts/ui-check.mjs",
+    "test:browser": "node scripts/browser-check.mjs"
+  },
+  "dependencies": { "ws": "8.18.3" },
+  "optionalDependencies": { "playwright": "1.56.1" }
+}
