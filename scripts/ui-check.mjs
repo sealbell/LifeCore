@@ -1,0 +1,53 @@
+import http from 'node:http';
+import { mkdtemp, mkdir, rm } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { chromium } from 'playwright';
+import { LifeService } from '../src/service.js';
+import { BrowserActivity } from '../src/browser.js';
+import { createHandler } from '../src/web.js';
+
+const directory = await mkdtemp(path.join(os.tmpdir(), 'lifecore-ui-'));
+const output = path.resolve('.superpowers', 'verification');
+await mkdir(output, { recursive: true });
+const service = new LifeService({ dataDir: directory, mode: 'preview' });
+service.browser = new BrowserActivity({ dataDir: directory, kernel: service.kernel, headless: true });
+await service.start();
+const server = http.createServer(createHandler(service));
+await new Promise(r => server.listen(0, '127.0.0.1', r));
+const browser = await chromium.launch();
+try {
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+  const errors = []; page.on('pageerror', e => errors.push(e.message));
+  await page.goto(`http://127.0.0.1:${server.address().port}/lifecore/`);
+  await page.getByText('运行中 · SQLite', { exact: true }).waitFor();
+  await page.screenshot({ path: path.join(output, 'home.png'), fullPage: true });
+  await page.locator('[data-view=birth]').click();
+  await page.getByLabel('它的名字').fill('验证用生命');
+  await page.getByLabel('你想认识怎样的它').fill('仅用于自动化验收的临时身份，不是用户的正式生命。');
+  await page.getByRole('button', { name: '保存草案', exact: true }).click();
+  await page.getByText('版本 1', { exact: true }).waitFor();
+  await page.getByLabel('消息', { exact: true }).fill('你好');
+  await page.getByRole('button', { name: '发送 ↗', exact: true }).click();
+  await page.locator('#notice').filter({ hasText: '不会生成模拟回复' }).waitFor();
+  await page.getByRole('button', { name: '确认正式诞生', exact: true }).click();
+  await page.getByRole('button', { name: '确认诞生', exact: true }).click();
+  await page.getByText('本地对话', { exact: true }).waitFor();
+  const life = (await service.state()).life;
+  assert.ok(life.life_id);
+  await page.reload(); await page.getByText('验证用生命', { exact: true }).first().waitFor();
+  assert.equal((await service.state()).life.life_id, life.life_id);
+  await page.locator('[data-view=settings]').click();
+  await page.screenshot({ path: path.join(output, 'settings.png'), fullPage: true });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator('[data-view=home]').click();
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+  await page.screenshot({ path: path.join(output, 'mobile.png'), fullPage: true });
+  assert.deepEqual(errors, []);
+  console.log('UI PASS: real temporary SQLite draft/birth/reload, no fake model response, desktop/mobile layout, zero page errors.');
+  console.log('Screenshots: ' + output);
+} finally {
+  await browser.close(); await new Promise(r => server.close(r)); await service.stop();
+  await rm(directory, { recursive: true, force: true });
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>LifeCore · 生命核心</title><link rel="stylesheet" href="/lifecore/style.css"><script type="module" src="/lifecore/app.js"></script></head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="#home"><span class="brand-mark">◈</span><span>LifeCore<small>生命核心</small></span></a>
+  <div class="nav-caption">一个生命，持续生长</div>
+  <nav aria-label="主导航">
+    <button data-view="home" class="active"><span>◉</span> 生命概览</button>
+    <button data-view="birth"><span>✧</span> 出生与试聊</button>
+    <button data-view="events"><span>≋</span> 经历时间线</button>
+    <button data-view="activity"><span>▷</span> 日常活动</button>
+    <button data-view="settings"><span>⊞</span> 连接与组件</button>
+  </nav>
+  <div class="sidebar-bottom"><span class="dot"></span> 本机持久化存储<small>v0.1 · Preview</small></div>
+</aside>
+<main>
+  <header><div class="breadcrumb">工作台 <span>/</span> <b id="page-name">生命概览</b></div><div class="header-actions"><span id="mode" class="pill">正在连接</span><button id="pause" class="quiet">暂停活动</button></div></header>
+  <div id="notice" role="status" hidden></div>
+  <section data-panel="home">
+    <div class="heading"><div><div class="eyebrow">LIFE, IN CONTINUITY</div><h1>从一个名字，开始一段生命。</h1><p>身份被保留，经历有迹可循。这里是它与世界相遇的起点。</p></div><span class="edition">FIRST LIGHT / 001</span></div>
+    <div class="overview-grid">
+      <article class="life-card"><div class="card-top"><span>生命档案</span><span id="life-status" class="pill">尚未诞生</span></div><div class="orb"><div class="orb-core">✧</div></div><h2 id="life-name">等待一个名字</h2><p id="life-description">先描述你想认识的它，再通过试聊慢慢调整。</p><button class="primary" data-go="birth" id="birth-link">开始构建出生草案 <span>↗</span></button><small id="life-id">正式确认后，将拥有唯一且持久的生命标识。</small></article>
+      <div class="right-stack"><article class="card"><div class="card-top"><h2>运行状态</h2><span class="muted">实时读取</span></div><div class="health-row"><span>持久化内核</span><b id="kernel-status">检测中</b></div><div class="health-row"><span>DSH 模型</span><b id="model-status">未连接</b></div><div class="health-row"><span>SnowLuma · QQ</span><b id="qq-status">未连接</b></div><button class="text-button" data-go="settings">查看连接与组件 →</button></article><article class="card note-card"><span class="eyebrow">THIS FIRST VERSION</span><h2>先让连续性发生。</h2><p>v0.1 从身份、对话和真实记录开始。试聊与正式经历分开保存；发送是否成功，由平台回执决定。</p><div class="stats"><div><strong id="event-count">0</strong><span>正式事件</span></div><div><strong id="active-count">0</strong><span>处理中回合</span></div></div></article></div>
+    </div>
+    <div class="footnote">◌ 当前是早期预览：长期语义记忆、群聊与自主生活尚未开放。</div>
+  </section>
+  <section data-panel="birth" hidden>
+    <div class="heading"><div><div class="eyebrow">A BEGINNING OF ITS OWN</div><h1>先认识，再确认诞生。</h1><p>草案可以修改。每次保存会开启新的试聊上下文，试聊不会进入正式经历。</p></div></div>
+    <div class="two-columns"><article class="card"><div class="card-top"><h2>出生草案</h2><span class="pill" id="draft-revision">版本 0</span></div><form id="draft-form"><label for="draft-name">它的名字</label><input id="draft-name" maxlength="60" required placeholder="你想怎样称呼它？"><label for="draft-description">你想认识怎样的它</label><textarea id="draft-description" rows="9" maxlength="8000" required placeholder="用自然语言描述性格、兴趣、与你的关系，以及希望它遵守的边界。"></textarea><div class="button-row"><button class="secondary" type="submit">保存草案</button><button class="primary" id="birth-button" type="button">确认正式诞生</button></div><p class="hint" id="draft-hint">保存后可在右侧试聊。正式诞生会固定出生档案。</p></form></article>
+    <article class="card chat-card"><div class="card-top"><h2 id="chat-title">隔离试聊</h2><span class="pill" id="chat-scene">草案环境</span></div><div id="chat-messages" class="messages" aria-live="polite"><div class="empty-state">✧<p>让第一句对话，从这里开始。</p><small>需要 DSH 模型。未连接时不会生成演示回答。</small></div></div><form id="chat-form"><textarea id="chat-input" rows="2" maxlength="8000" required aria-label="消息" placeholder="对它说点什么…"></textarea><div class="button-row"><small id="chat-model">等待模型配置</small><button class="primary" type="submit">发送 ↗</button></div></form></article></div>
+  </section>
+  <section data-panel="events" hidden><div class="heading"><div><div class="eyebrow">A TRACE OF EVERY ENCOUNTER</div><h1>经历时间线</h1><p>只展示正式事件。拟发送、失败和结果未知的回复均保留明确状态。</p></div><a class="secondary" href="/lifecore/api/export" download>导出正式记录 ↓</a></div><article class="card"><div class="card-top"><h2>最近 100 条事件</h2><button id="refresh-events" class="quiet">刷新</button></div><div id="timeline" class="timeline"></div></article></section>
+  <section data-panel="activity" hidden><div class="heading"><div><div class="eyebrow">A MOMENT IN THE WORLD</div><h1>日常活动</h1><p>打开独立浏览器观看视频，保存进度，在对话打断后尝试继续。</p></div></div><div class="two-columns"><article class="card"><h2>一起看视频</h2><form id="video-form"><label for="video-url">B站 / 抖音视频地址</label><input type="url" id="video-url" required placeholder="https://www.bilibili.com/video/…"><button class="primary" type="submit">打开视频窗口 ↗</button></form><div class="button-row"><button class="secondary" data-video="pause">暂停并保存</button><button class="secondary" data-video="resume">恢复进度</button><button class="quiet" data-video="observe">读取状态</button></div><p class="hint">需要 Chromium 组件。网站登录或播放限制需在新窗口中处理；插件不会自动登录。</p></article><article class="card"><div class="card-top"><h2>活动记录</h2><span class="pill" id="activity-status">尚未开始</span></div><h3 id="activity-title">还没有打开视频</h3><div id="activity-position" class="position">00:00</div><p id="activity-detail" class="muted">此版本读取页面标题和播放器状态，尚未接入字幕、音频或画面理解。</p><p class="hint">中断恢复以同一个视频和真实播放器读回为准。</p></article></div></section>
+  <section data-panel="settings" hidden><div class="heading"><div><div class="eyebrow">CONNECTED, WITH INTENTION</div><h1>连接与组件</h1><p>DSH 负责模型运行，SnowLuma 连接普通 QQ 账号。</p></div></div>
+    <div class="component-grid"><article class="card compact"><h3>Python 内核</h3><b id="python-component">检测中</b><p>优先使用 DSH 自带 Python 3.12+。</p></article><article class="card compact"><h3>SnowLuma</h3><b id="qq-component">等待连接验证</b><p>本机 OneBot 11 正向 WebSocket。</p></article><article class="card compact"><h3>Chromium</h3><b id="browser-component">检测中</b><p>可选，只在视频活动时使用。</p></article></div>
+    <form id="settings-form" class="two-columns"><article class="card"><h2>DSH 模型</h2><label for="provider">Provider ID</label><input id="provider" list="providers" placeholder="DSH 中的提供商 ID"><datalist id="providers"></datalist><label for="model">Model ID</label><input id="model" placeholder="DSH 中可用的模型标识"><p class="hint">使用 DSH 已配置的凭据，不在这里保存模型 API Key。模型不可用时不会自动切换。</p><div class="component-help"><h3>缺少组件？</h3><p>复制安装任务，在 DSH 新会话中执行。先核对来源和版本，再安装。</p><button class="secondary" id="copy-install" type="button">复制组件安装任务</button><p class="hint">v0.1 提供检测与安装任务；自动唤起 DSH 安装尚未接入。</p></div></article>
+    <article class="card"><div class="card-top"><h2>普通 QQ 接入</h2><span class="pill">仅白名单私聊</span></div><label for="qq-url">SnowLuma WebSocket 地址</label><input id="qq-url" placeholder="ws://127.0.0.1:3001"><label for="qq-account">绑定的 QQ 号</label><input id="qq-account" inputmode="numeric" placeholder="SnowLuma 登录的账号"><label for="qq-allow">允许私聊的 QQ 号</label><input id="qq-allow" placeholder="用逗号分隔，最多 20 个"><label for="qq-token">访问令牌</label><input id="qq-token" type="password" autocomplete="off" placeholder="仅保留在内存；重启后重新填写"><p class="hint">连接会核对账号及在线状态。保存配置将断开已有连接。</p><div class="button-row"><button class="primary" type="submit">保存配置</button><button class="secondary" type="button" id="qq-connect">连接 QQ</button><button class="quiet" type="button" id="qq-disconnect">断开</button></div></article></form>
+    <article class="card storage"><h3>数据与诊断</h3><p id="data-dir" class="mono"></p><p id="last-error" class="hint"></p><p class="hint">版本基线：DSH 0.2.1-rc.3 · Python 3.12+ · SnowLuma 需真实账号联调后确认兼容版本。不要自动跟随 latest 升级。</p></article>
+  </section>
+  <footer><span>LifeCore / 生命核心</span><span>一个身份 · 一条时间线 · 逐步生长</span></footer>
+</main>
+<dialog id="birth-dialog"><h2>让它正式诞生？</h2><p>将以当前已保存的草案生成唯一身份。出生档案不会被后续草案覆盖，试聊不会继承为正式经历。</p><strong id="confirm-name"></strong><div class="button-row"><button id="cancel-birth" class="secondary">继续调整</button><button id="confirm-birth" class="primary">确认诞生</button></div></dialog>
+</body></html>
