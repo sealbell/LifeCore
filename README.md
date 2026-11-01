@@ -4,9 +4,15 @@
 
 A DeepSeek Harness plugin for persistent identity, memory, and gradual personality growth.
 
-[English](README.en.md) · [架构 V1](docs/architecture/v1.md) · [模块讨论指南](docs/architecture/discussions.md) · [项目总体设计](docs/project-design.md)
+[English](README.en.md) · [架构 V1](docs/architecture/v1.md) · [模块讨论指南](docs/architecture/discussions.md) · [项目总体设计](docs/project-design.md) · [参考项目与致谢](ACKNOWLEDGEMENTS.md)
 
 开发讨论入口：[第一版十五模块需求单](docs/requirements/v1-requirements.md) · [完整架构与数据流](docs/architecture/v1-data-flow.md) · [架构总览图片](docs/architecture/assets/v1-architecture-overview.png)。需求范围和技术选型仍待会议确认。
+
+当前完整评审入口：[项目设计与开发前核对稿](docs/superpowers/specs/2026-11-01-lifecore-complete-design.md)。集中说明自主生活、普通 QQ 与微信、受限工作任务、四层记忆、70% 工作段交接、低谷归纳、后台记忆星图、组件及开发验收；明确标注推荐选择与实机门槛，核对后再生成新的实施计划。下列旧稿保留为历史和专项依据，不将不同版本的默认值混用。
+
+2026-11-01 推荐定版稿：[生产插件架构与组件选型](docs/superpowers/specs/2026-11-01-production-plugin-architecture.md)，包含自研/复用边界、QQ与微信、多层记忆与图谱、托管内核、开发阶段及生产验收。该稿显式提出对旧架构的修改，尚未替代已确认基线，也不表示已有可运行版本。
+
+最新目标修订：[自主生活、并行活动与中断续做](docs/superpowers/specs/2026-11-01-autonomous-life-and-interruption.md)。大肥鱼应能在授权范围内主动社交、浏览视频、切换注意力并继续未完成活动；聊天是持续生活的一部分。普通QQ头像/空间和B站/抖音活动纳入目标，具体实现仍待开发与验收。
 
 ## 为什么做 LifeCore
 
@@ -55,6 +61,10 @@ DSH、QQ 网关及其他外部软件由用户自行安装，不随本项目分�
 仓库只接收合成案例、脱敏配置及测试材料。请勿提交真实聊天、生命数据库、平台 Cookie、账号凭据或备份。`.gitignore` 是辅助保护，提交前仍需检查文件内容。
 
 欢迎围绕设计、事件模型、隐私边界和 DSH 兼容性提出 Issue。正式代码贡献流程将在最小插件实现时补充。
+
+## 参考与致谢
+
+感谢为数字生命、长期记忆、平台连接与基础工具分享成果的开发者和研究者。[参考项目与致谢](ACKNOWLEDGEMENTS.md)集中记录作者与项目链接、具体启发、研究版本和采用状态。新增参考来源时同步登记；未来实际复用代码、模型或素材时，补齐对应的版权和许可声明。
 
 ## 许可
 

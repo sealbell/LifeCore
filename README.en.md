@@ -4,9 +4,11 @@
 
 A DeepSeek Harness plugin for persistent identity, memory, and gradual personality growth.
 
-[中文](README.md) · [Architecture V1 (Chinese)](docs/architecture/v1.md) · [Module discussion guide (Chinese)](docs/architecture/discussions.md) · [Project design (Chinese)](docs/project-design.md)
+[中文](README.md) · [Architecture V1 (Chinese)](docs/architecture/v1.md) · [Module discussion guide (Chinese)](docs/architecture/discussions.md) · [Project design (Chinese)](docs/project-design.md) · [References and acknowledgements (Chinese)](ACKNOWLEDGEMENTS.md)
 
 Planning references (Chinese): [first-release requirements for all 15 modules](docs/requirements/v1-requirements.md), [architecture and data flows](docs/architecture/v1-data-flow.md), and [overview image](docs/architecture/assets/v1-architecture-overview.png). Release scope and technical choices remain under discussion.
+
+Current review entry: [complete project design and pre-development review (Chinese)](docs/superpowers/specs/2026-11-01-lifecore-complete-design.md). It consolidates autonomous activities, QQ work tasks, memory, context handoff, cost scheduling, the memory graph UI, components, and acceptance criteria. It remains a proposal for review; earlier documents retain their historical context.
 
 ## Purpose
 
@@ -45,6 +47,10 @@ Life and emotion describe the project's aspiration and behavioral models, not a 
 ## Contributing and data
 
 Design feedback and synthetic test scenarios are welcome. Do not commit real conversations, life databases, credentials, cookies, or backups. Review staged content even when ignore rules are present.
+
+## References and acknowledgements
+
+We thank the developers, researchers, contributors, and maintainers whose public work has informed LifeCore. [References and acknowledgements (Chinese)](ACKNOWLEDGEMENTS.md) records the sources, specific influences, reviewed versions, and adoption status. New references should be added as they are considered; actual code, model, or asset reuse must retain the applicable attribution and license notices.
 
 ## License
 
