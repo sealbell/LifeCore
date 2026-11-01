@@ -109,6 +109,15 @@ class Store:
         with self.mutex, self.db:
             return self._command(op, body)
 
+    def _scene(self, scene):
+        if scene == 'trial':
+            return 'trial:' + str(self.get('draft', {}).get('revision', 0))
+        if scene == 'local' or (isinstance(scene, str) and re.fullmatch(r'qq:[0-9]{1,20}:private:[0-9]{1,20}', scene)):
+            if not self.get('life'):
+                raise DomainError('请先确认正式出生')
+            return scene
+        raise DomainError('不支持的会话场景')
+
     def _command(self, op, b):
         if op == 'state':
             return {'life': self.get('life'), 'draft': self.get('draft', {'revision': 0, 'name': '', 'description': ''}),
@@ -144,6 +153,14 @@ class Store:
             self.set('life', life)
             self.set('epoch', self.get('epoch') + 1)
             return life
+        if op == 'events':
+            scene = b.get('scene')
+            if scene:
+                scene = self._scene(scene)
+                rows = self.rows('SELECT * FROM events WHERE scene=? ORDER BY seq DESC LIMIT 100', (scene,))
+            else:
+                rows = self.rows("SELECT * FROM events WHERE scene NOT LIKE 'trial:%' ORDER BY seq DESC LIMIT 100")
+            return {'events': rows}
         if op == 'export':
             return {'format': 'lifecore-preview-1', 'exported_at': now(), 'life': self.get('life'),
                     'events': self.rows("SELECT * FROM events WHERE scene NOT LIKE 'trial:%' ORDER BY seq"),
