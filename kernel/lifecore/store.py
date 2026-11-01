@@ -153,6 +153,64 @@ class Store:
             self.set('life', life)
             self.set('epoch', self.get('epoch') + 1)
             return life
+        if op in ('pause', 'invalidate'):
+            if op == 'pause':
+                if not isinstance(b.get('paused'), bool):
+                    raise DomainError('暂停状态必须是布尔值')
+                self.set('paused', b['paused'])
+            self.set('epoch', self.get('epoch') + 1)
+            self.db.execute("UPDATE turns SET status='cancelled' WHERE status='pending'")
+            self.db.execute("UPDATE actions SET status='frozen' WHERE status='pending'")
+            return {'paused': self.get('paused', False), 'epoch': self.get('epoch')}
+        if op == 'turn.prepare':
+            if self.get('paused', False):
+                raise DomainError('生命活动已暂停')
+            scene = self._scene(b.get('scene'))
+            content = text(b.get('text'), '消息', 8000)
+            event_id = text(b.get('event_id'), '消息标识', 160)
+            old = self.db.execute('SELECT * FROM turns WHERE scene=? AND event_id=?', (scene, event_id)).fetchone()
+            if old:
+                return {'duplicate': True, 'turn_id': old['id'], 'status': old['status']}
+            profile = self.get('draft') if scene.startswith('trial:') else self.get('life')
+            if not profile:
+                raise DomainError('请先保存出生草案')
+            turn_id = str(uuid4())
+            stamp = now()
+            self.db.execute('INSERT INTO events(event_id,scene,role,text,kind,created_at) VALUES(?,?,?,?,?,?)',
+                            (event_id, scene, 'user', content, 'observed', stamp))
+            self.db.execute('INSERT INTO turns VALUES(?,?,?,?,?,?,?,?)',
+                            (turn_id, scene, event_id, self.get('epoch'), 'pending', None, stamp, None))
+            history = self.rows("SELECT role,text FROM events WHERE scene=? AND kind IN ('observed','replied') ORDER BY seq DESC LIMIT 16", (scene,))
+            history.reverse()
+            # A bounded G1 working context; not advertised as long-term semantic recall.
+            total = 0
+            bounded = []
+            for item in reversed(history):
+                if total + len(item['text']) > 18000:
+                    break
+                bounded.append(item)
+                total += len(item['text'])
+            bounded.reverse()
+            return {'duplicate': False, 'turn_id': turn_id, 'scene': scene,
+                    'profile': profile, 'messages': bounded, 'activity': self.get('activity') if scene == 'local' else None}
+        if op == 'turn.commit':
+            row = self.db.execute('SELECT * FROM turns WHERE id=?', (b.get('turn_id'),)).fetchone()
+            if not row or row['status'] != 'pending' or row['epoch'] != self.get('epoch') or self.get('paused', False):
+                raise DomainError('回合已失效，回复未提交')
+            reply = text(b.get('text'), '回复', 12000)
+            qq = row['scene'].startswith('qq:')
+            action_id = str(uuid4()) if qq else None
+            self.db.execute('UPDATE turns SET status=?,usage=?,action_id=? WHERE id=?',
+                            ('completed', json.dumps(b.get('usage', {})), action_id, row['id']))
+            self.db.execute('INSERT INTO events(event_id,scene,role,text,kind,created_at) VALUES(?,?,?,?,?,?)',
+                            ('reply:' + row['id'], row['scene'], 'assistant', reply, 'proposed' if qq else 'replied', now()))
+            if qq:
+                self.db.execute('INSERT INTO actions VALUES(?,?,?,?,?,?,?,?)',
+                                (action_id, row['id'], row['scene'], reply, 'pending', row['epoch'], now(), None))
+            return {'text': reply, 'action_id': action_id}
+        if op == 'turn.fail':
+            self.db.execute("UPDATE turns SET status='failed' WHERE id=? AND status='pending'", (b.get('turn_id'),))
+            return {'ok': True}
         if op == 'action.claim':
             row = self.db.execute('SELECT * FROM actions WHERE id=?', (b.get('action_id'),)).fetchone()
             if not row or row['status'] != 'pending' or row['epoch'] != self.get('epoch') or self.get('paused', False):
