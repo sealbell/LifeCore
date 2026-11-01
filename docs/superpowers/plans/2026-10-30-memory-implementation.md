@@ -1,5 +1,7 @@
 # LifeCore 记忆模块 Implementation Plan
 
+历史计划提示：本计划基于早期 TypeScript 记忆模块方案，不作为当前完整项目的直接开工指令。请先核对[完整项目设计](../specs/2026-11-01-lifecore-complete-design.md)，其中包含托管 Python、自主活动、普通 QQ、工作任务与工作段策略；确认后另行生成实施计划，避免混用旧技术栈和范围。
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. If the user chooses delegated execution, use superpowers:subagent-driven-development. Steps use checkbox syntax for tracking.
 
 **Goal:** 实现一个运行在 DSH 内、可在新会话和重启后恢复身份与经历，并以有来源的相关记忆支持回复的模块。
