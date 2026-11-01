@@ -153,6 +153,24 @@ class Store:
             self.set('life', life)
             self.set('epoch', self.get('epoch') + 1)
             return life
+        if op == 'action.claim':
+            row = self.db.execute('SELECT * FROM actions WHERE id=?', (b.get('action_id'),)).fetchone()
+            if not row or row['status'] != 'pending' or row['epoch'] != self.get('epoch') or self.get('paused', False):
+                raise DomainError('动作已冻结或执行过，不可自动重发')
+            self.db.execute("UPDATE actions SET status='sending' WHERE id=?", (row['id'],))
+            return dict(row)
+        if op == 'action.receipt':
+            status = b.get('status')
+            if status not in ('succeeded', 'failed', 'unknown'):
+                raise DomainError('无效的动作结果')
+            row = self.db.execute('SELECT * FROM actions WHERE id=?', (b.get('action_id'),)).fetchone()
+            if not row or row['status'] != 'sending':
+                raise DomainError('动作不在发送阶段')
+            receipt = {k: b[k] for k in ('status', 'message_id', 'detail') if k in b}
+            self.db.execute('UPDATE actions SET status=?,receipt=? WHERE id=?', (status, json.dumps(receipt), row['id']))
+            self.db.execute('UPDATE events SET kind=? WHERE event_id=? AND scene=?',
+                            ('replied' if status == 'succeeded' else status, 'reply:' + row['turn_id'], row['scene']))
+            return {'ok': True}
         if op == 'events':
             scene = b.get('scene')
             if scene:
