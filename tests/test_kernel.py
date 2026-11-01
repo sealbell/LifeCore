@@ -26,6 +26,15 @@ class KernelTests(unittest.TestCase):
         d = self.call('draft.save', name='大肥鱼', description='温和、好奇。', expected_revision=0)
         return self.call('birth', expected_revision=d['revision'], request_id='birth-one')
 
+    def test_birth_is_idempotent_and_survives_restart(self):
+        first = self.birth()
+        self.assertEqual(self.call('birth', expected_revision=1, request_id='birth-one')['life_id'], first['life_id'])
+        with self.assertRaises(DomainError):
+            self.call('birth', expected_revision=1, request_id='different-birth')
+        self.store.close()
+        self.store = Store(Path(self.tmp.name))
+        self.assertEqual(self.call('state')['life']['life_id'], first['life_id'])
+
     def test_one_writer_lock(self):
         with self.assertRaises(DomainError):
             Store(Path(self.tmp.name))

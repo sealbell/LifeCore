@@ -117,6 +117,33 @@ class Store:
                     'event_count': self.db.execute("SELECT count(*) FROM events WHERE scene NOT LIKE 'trial:%'").fetchone()[0],
                     'actions': self.rows('SELECT * FROM actions ORDER BY created_at DESC LIMIT 30'),
                     'schema_version': 1}
+        if op == 'draft.save':
+            if self.get('life'):
+                raise DomainError('出生档案已确认，不可通过草案覆盖')
+            current = self.get('draft', {'revision': 0})
+            if b.get('expected_revision') != current['revision']:
+                raise DomainError('草案已更新，请刷新后重试')
+            draft = {'name': text(b.get('name'), '名字', 60),
+                     'description': text(b.get('description'), '出生设定', 8000),
+                     'revision': current['revision'] + 1, 'updated_at': now(), 'source': 'creator'}
+            self.set('draft', draft)
+            self.set('epoch', self.get('epoch') + 1)
+            return draft
+        if op == 'birth':
+            request_id = text(b.get('request_id'), '请求标识', 120)
+            life = self.get('life')
+            if life:
+                if life['birth_request_id'] == request_id:
+                    return life
+                raise DomainError('已经存在正式生命，不能重复出生')
+            draft = self.get('draft')
+            if not draft or b.get('expected_revision') != draft['revision']:
+                raise DomainError('请核对最新草案后再确认出生')
+            life = {'life_id': str(uuid4()), 'name': draft['name'], 'description': draft['description'],
+                    'born_at': now(), 'birth_request_id': request_id, 'draft_revision': draft['revision']}
+            self.set('life', life)
+            self.set('epoch', self.get('epoch') + 1)
+            return life
         if op == 'export':
             return {'format': 'lifecore-preview-1', 'exported_at': now(), 'life': self.get('life'),
                     'events': self.rows("SELECT * FROM events WHERE scene NOT LIKE 'trial:%' ORDER BY seq"),
