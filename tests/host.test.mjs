@@ -39,3 +39,13 @@ test('model streaming uses final blocks once, rejects failed finishes', async ()
   await assert.rejects(generateReply(failing, factories, { provider: 'p', model: 'm' }, request), /未完成|失败/);
 });
 
+test('ordinary QQ accepts only bound account and explicitly allowed private text', () => {
+  assert.ok(classifyInbound, 'OneBot normalization must exist');
+  const config = { account: '42', allowPrivate: ['7'] };
+  const event = { post_type: 'message', self_id: 42, message_type: 'private', user_id: 7, message_id: 101, message: [{ type: 'text', data: { text: '你好' } }] };
+  assert.deepEqual(classifyInbound(event, config), { scene: 'qq:42:private:7', text: '你好', event_id: '101', sender: '7' });
+  assert.equal(classifyInbound({ ...event, self_id: 99 }, config), null);
+  assert.equal(classifyInbound({ ...event, user_id: 8 }, config), null);
+  assert.equal(classifyInbound({ ...event, message_type: 'group' }, config), null);
+  assert.equal(classifyInbound({ ...event, message_id: undefined }, config), null);
+});

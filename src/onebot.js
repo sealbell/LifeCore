@@ -1,6 +1,16 @@
 import WebSocket from 'ws';
 import { randomUUID } from 'node:crypto';
 
+export function classifyInbound(event, config) {
+  if (event?.post_type !== 'message' || event.message_type !== 'private' || String(event.self_id) !== config.account) return null;
+  const sender = String(event.user_id);
+  if (sender === config.account || !config.allowPrivate.includes(sender) || event.message_id == null) return null;
+  if (!Array.isArray(event.message) || event.message.some(s => !s || s.type !== 'text' || typeof s.data?.text !== 'string')) return null;
+  const text = event.message.map(s => s.data?.text ?? '').join('').trim();
+  if (!text || text.length > 8000) return null;
+  return { scene: `qq:${config.account}:private:${sender}`, text, event_id: String(event.message_id), sender };
+}
+
 export function gatewayUrl(value) {
   const url = new URL(value);
   if (!['ws:', 'wss:'].includes(url.protocol) || !['127.0.0.1', 'localhost', '[::1]'].includes(url.hostname)

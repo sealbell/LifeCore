@@ -1,3 +1,27 @@
+import { readFile, writeFile, rename, mkdir } from 'node:fs/promises';
+import path from 'node:path';
+import { randomUUID } from 'node:crypto';
+import { KernelClient, defaultDataDir } from './kernel-client.js';
+import { generateReply } from './model.js';
+import { OneBot, classifyInbound, gatewayUrl } from './onebot.js';
+
+const messageFactories = {
+  createUserMessage: ({ content, source }) => ({ id: randomUUID(), role: 'user', content, source }),
+  createAssistantMessage: ({ content, source }) => ({ id: randomUUID(), role: 'assistant', content, source: { kind: 'model', ...source } }),
+};
+const initialConfig = () => ({ provider: '', model: '', qq: { url: 'ws://127.0.0.1:3001', account: '', allowPrivate: [] } });
+
+function validateSettings(input) {
+  if (!input || typeof input !== 'object') throw new Error('配置格式无效');
+  const provider = String(input.provider ?? '').trim(), model = String(input.model ?? '').trim();
+  if (provider.length > 120 || model.length > 160) throw new Error('模型标识过长');
+  const q = input.qq ?? {}, account = String(q.account ?? '').trim();
+  if (account && !/^\d{1,20}$/.test(account)) throw new Error('QQ 号格式不正确');
+  const allowPrivate = Array.isArray(q.allowPrivate) ? [...new Set(q.allowPrivate.map(String))] : [];
+  if (allowPrivate.length > 20 || allowPrivate.some(id => !/^\d{1,20}$/.test(id))) throw new Error('私聊白名单需为 QQ 号，预览版最多 20 个');
+  return { provider, model, qq: { url: gatewayUrl(q.url ?? 'ws://127.0.0.1:3001'), account, allowPrivate } };
+}
+
 export class LifeService {
   async sendAction(actionId, revision) {
     if (revision !== this.configRevision || this.qq.status !== 'online') throw new Error('发送条件已变化，动作保持待核对状态');
