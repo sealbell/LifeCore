@@ -1,0 +1,4 @@
+- insert:
+    - id: lifecore-dsh
+      name: lifecore-dsh
+      config: {}
