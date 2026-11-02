@@ -4,6 +4,20 @@
 
 共同基线：[架构 V1](v1.md) · 背景：[总体设计](../project-design.md)
 
+2026-11-02 当前讨论入口：[设计基线、职责与待决事项](../superpowers/specs/2026-11-02-design-baseline-and-responsibilities.md)及[DSH 插件复用证据](references/2026-11-02-dsh-plugin-reuse.md)。维护者要求先顺清完整逻辑和每个模块的做法，再安排后续开发。本轮只整理设计；优先核对 LifeCore、DSH 和能力插件的责任、数据权威与生命周期。下文的“未实现”等状态是历史记录，当前预览实际范围见 [v0.1 使用说明](../v0.1-quickstart.md)。新的责任划分、记忆选型和开发次序尚未确认，不沿用旧实施授权自动启动编码。
+
+同日后续：[总体职责、执行场景与数据归属](../superpowers/specs/2026-11-02-runtime-and-data-ownership.md)已形成 R01/R02 建议稿，细化生命身份、场景与任务 Agent、数据权威、工具执行、外发回执和恢复边界。DSH 接口研究固定到 `ce7073d5`；未验证发行包兼容性，未实施。下一步先核对这份总体分工，再冻结公共契约。
+
+共同契约进展：[出生、接收、绑定、授权、回执与恢复](../superpowers/specs/2026-11-02-common-contracts.md)及[需求映射/故障验收表](../superpowers/specs/2026-11-02-common-contracts-acceptance.md)已形成建议稿，明确提交点、重复请求、跨库准备、宿主投递核对、晚回执和旧备份隔离。用户明确“先不开发”；本轮仅继续设计，C01–C32 是待实施验收案例。
+
+记忆与上下文进展：[04 契约对照与适配建议](../superpowers/specs/2026-11-02-memory-context-reuse-design.md)和[固定源码证据](references/2026-11-02-memory-context-evidence.md)已对 LivingMemory、SeekMemory、PLUR、DSH 压缩/引用机制进行静态比较。建议受控复用一个记忆后端并由 M09 统一装配；R03/R05/R06 有进一步建议，具体项目、权威方案及兼容性仍待确认，G01–G10 尚未运行。
+
+记忆适配接口进展：[05 字段与一致性流程](../superpowers/specs/2026-11-02-memory-adapter-contracts.md)及[候选改动地图](../superpowers/specs/2026-11-02-memory-adapter-change-map.md)细化来源/证据版本、可信权限、领域提交与投影同步、幂等、删除闭包、导出/导入和后端切换。补读源码区分重复学习、软退役和擦除；MA01–MA16 为待验证设计场景，未开发或选定后端。
+
+记忆路线收敛：[06 SeekMemory 服务与 PLUR 检索选型建议](../superpowers/specs/2026-11-02-memory-route-selection-design.md)已比较最小组件边界、自研工作和持续维护成本。建议优先 SeekMemory 无提交候选处理＋受控召回，并补齐中文语义链；PLUR 检索保留为备选。最小方案共用 LifeCore 规范主库，不引入插件独立主库；候选接口、依赖隔离及质量门槛未通过运行验证。R03 仍待确认，未启动实施。
+
+记忆接入设计交付：[07 组件依赖、提交边界与准入标准](../superpowers/specs/2026-11-02-memory-integration-boundaries-design.md)明确 app.ports 的窄接口替换、唯一规范写入口、T1–T5、控制库/主库间隙恢复和 V1–V5 准入。用户授权将今天的设计按逻辑提交推送；这不等于批准开发。[当日分模块进度](2026-11-02-design-progress.md)列出完整文档链和未完成的 P4/P5/P6 范围。
+
 项目级需求与会议入口：[第一版十五模块需求单](../requirements/v1-requirements.md) · [完整架构与数据流](v1-data-flow.md)。各需求具有稳定编号、优先级、依据与完成条件；会议决议按 D01–D15 记录，联合验收按 E01–E14 对照。其范围仍待确认，不以记忆专项实施计划替代全项目范围。
 
 实现讨论入口：[2026-10-30 记忆模块实施计划](../superpowers/plans/2026-10-30-memory-implementation.md)。按宿主验证、持久闭环、自动整理、语义检索、删除恢复、整体评测分成 10 项任务；计划未执行，不改变已确认范围或产品进度。

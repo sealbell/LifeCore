@@ -8,7 +8,21 @@ A DeepSeek Harness plugin for persistent identity, memory, and gradual personali
 
 Planning references (Chinese): [first-release requirements for all 15 modules](docs/requirements/v1-requirements.md), [architecture and data flows](docs/architecture/v1-data-flow.md), and [overview image](docs/architecture/assets/v1-architecture-overview.png). Release scope and technical choices remain under discussion.
 
-Current review entry: [complete project design and pre-development review (Chinese)](docs/superpowers/specs/2026-11-01-lifecore-complete-design.md). It consolidates autonomous activities, QQ work tasks, memory, context handoff, cost scheduling, the memory graph UI, components, and acceptance criteria. It remains a proposal for review; earlier documents retain their historical context.
+Current design discussion (2026-11-02): [baseline, responsibilities, and open decisions (Chinese)](docs/superpowers/specs/2026-11-02-design-baseline-and-responsibilities.md) and [DSH plugin reuse evidence (Chinese)](docs/architecture/references/2026-11-02-dsh-plugin-reuse.md). The current phase clarifies the complete behavior, module boundaries, and reuse options before further implementation. These drafts do not approve a new architecture or plugin selection.
+
+Architecture detail: [execution contexts and data ownership for one life (Chinese)](docs/superpowers/specs/2026-11-02-runtime-and-data-ownership.md). This proposal separates LifeCore rules, DSH execution, plugin capabilities, and scene/task data boundaries; it awaits review.
+
+Shared contracts: [birth, event intake, execution binding, authorization, action receipts, and recovery (Chinese)](docs/superpowers/specs/2026-11-02-common-contracts.md), with [failure acceptance cases (Chinese)](docs/superpowers/specs/2026-11-02-common-contracts-acceptance.md). These define proposed commit and recovery boundaries, not implemented behavior.
+
+Memory and context comparison: [LivingMemory, SeekMemory, PLUR, and DSH against the contracts (Chinese)](docs/superpowers/specs/2026-11-02-memory-context-reuse-design.md), with [pinned source evidence (Chinese)](docs/architecture/references/2026-11-02-memory-context-evidence.md). Reusable mechanisms, adaptation work, known conflicts, and unverified requirements are separated. No backend has been selected or installed.
+
+Memory adapter detail: [source revisions, access, idempotent writes, deletion, recovery, and exports (Chinese)](docs/superpowers/specs/2026-11-02-memory-adapter-contracts.md), with a [candidate change map (Chinese)](docs/superpowers/specs/2026-11-02-memory-adapter-change-map.md). These proposals define fields, commit boundaries, migration flows, and sixteen unexecuted acceptance cases.
+
+Memory route recommendation: [SeekMemory services versus PLUR retrieval components (Chinese)](docs/superpowers/specs/2026-11-02-memory-route-selection-design.md). Compares minimal integration, custom work, and maintenance. Recommends controlled SeekMemory candidate processing with a Chinese semantic retrieval addition; PLUR remains the alternative. This is an unapproved design recommendation, not an implementation.
+
+Memory integration detail: [component dependencies, commit boundaries, and acceptance gates (Chinese)](docs/superpowers/specs/2026-11-02-memory-integration-boundaries-design.md), with [November 2 progress by module (Chinese)](docs/architecture/2026-11-02-design-progress.md). The current memory design deliverables are documented; life/growth, capabilities/experience, and full-system design review remain. Product implementation has not started for these proposals.
+
+Previous integrated proposal: [complete project design and pre-development review (Chinese)](docs/superpowers/specs/2026-11-01-lifecore-complete-design.md). It consolidates autonomous activities, QQ work tasks, memory, context handoff, cost scheduling, the memory graph UI, components, and acceptance criteria. It remains a proposal for review; earlier documents retain their historical context.
 
 ## Purpose
 

@@ -8,7 +8,21 @@ A DeepSeek Harness plugin for persistent identity, memory, and gradual personali
 
 开发讨论入口：[第一版十五模块需求单](docs/requirements/v1-requirements.md) · [完整架构与数据流](docs/architecture/v1-data-flow.md) · [架构总览图片](docs/architecture/assets/v1-architecture-overview.png)。需求范围和技术选型仍待会议确认。
 
-当前完整评审入口：[项目设计与开发前核对稿](docs/superpowers/specs/2026-11-01-lifecore-complete-design.md)。集中说明自主生活、普通 QQ 与微信、受限工作任务、四层记忆、70% 工作段交接、低谷归纳、后台记忆星图、组件及开发验收；明确标注推荐选择与实机门槛，核对后再生成新的实施计划。下列旧稿保留为历史和专项依据，不将不同版本的默认值混用。
+当前设计梳理入口（2026-11-02）：[基线、职责与待决事项](docs/superpowers/specs/2026-11-02-design-baseline-and-responsibilities.md) · [DSH 插件复用候选与证据](docs/architecture/references/2026-11-02-dsh-plugin-reuse.md)。当前先统一完整逻辑、模块边界和复用方案，再安排后续开发；这两份讨论稿不代表新架构或插件选型已经批准。
+
+总体分工细化：[同一生命的执行场景与数据归属](docs/superpowers/specs/2026-11-02-runtime-and-data-ownership.md)。说明 LifeCore、DSH 和能力插件的责任、场景/任务隔离及数据权威，当前为待确认设计建议。
+
+共同流程细化：[出生、事件接收、执行绑定、授权、动作回执和恢复](docs/superpowers/specs/2026-11-02-common-contracts.md) · [故障验收表](docs/superpowers/specs/2026-11-02-common-contracts-acceptance.md)。明确成功点与异常恢复顺序，仍为设计稿，未开始实现。
+
+记忆与上下文选型：[LivingMemory、SeekMemory、PLUR 与 DSH 的契约对照](docs/superpowers/specs/2026-11-02-memory-context-reuse-design.md) · [固定版本证据](docs/architecture/references/2026-11-02-memory-context-evidence.md)。区分可复用机制、适配工作、已知冲突与未核实项；具体后端尚未选定，未安装或开发。
+
+记忆接口细化：[来源版本、权限、幂等写入、删除恢复与导出](docs/superpowers/specs/2026-11-02-memory-adapter-contracts.md) · [各候选具体改动地图](docs/superpowers/specs/2026-11-02-memory-adapter-change-map.md)。包含字段、提交边界、迁移流程和 MA01–MA16 待验证场景，仍为设计建议。
+
+记忆路线建议：[SeekMemory 受控服务与 PLUR 检索组件](docs/superpowers/specs/2026-11-02-memory-route-selection-design.md)。比较最小接入、自研与维护成本；建议优先 SeekMemory 候选处理路线，补齐中文语义检索，PLUR 作为备选。建议尚未确认，未开发。
+
+记忆接入收敛：[组件依赖、唯一提交边界与准入标准](docs/superpowers/specs/2026-11-02-memory-integration-boundaries-design.md) · [11 月 2 日分模块进度](docs/architecture/2026-11-02-design-progress.md)。当前记忆专项已形成设计交付；生活成长、能力体验和全链路设计仍待继续，未启动产品开发。
+
+既有完整设计：[项目设计与开发前核对稿](docs/superpowers/specs/2026-11-01-lifecore-complete-design.md)。集中说明自主生活、普通 QQ 与微信、受限工作任务、四层记忆、70% 工作段交接、低谷归纳、后台记忆星图、组件及开发验收；明确标注推荐选择与实机门槛，核对后再生成新的实施计划。下列旧稿保留为历史和专项依据，不将不同版本的默认值混用。
 
 2026-11-01 推荐定版稿：[生产插件架构与组件选型](docs/superpowers/specs/2026-11-01-production-plugin-architecture.md)，包含自研/复用边界、QQ与微信、多层记忆与图谱、托管内核、开发阶段及生产验收。该稿显式提出对旧架构的修改，尚未替代已确认基线，也不表示已有可运行版本。
 
