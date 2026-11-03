@@ -1,0 +1,166 @@
+<div id="lifecore-social-console" lang="zh-CN" aria-label="大肥鱼管理界面设计预览">
+  <style>
+    #lifecore-social-console { --lc-bg:light-dark(#f5f7f2,#121815);--lc-panel:light-dark(#ffffff,#1b2420);--lc-ink:light-dark(#24372b,#e8eee7);--lc-soft:light-dark(#596b5e,#a4b4a8);--lc-line:light-dark(#d9e2d7,#34453a);--lc-green:light-dark(#355c3c,#c8e5a0);--lc-tint:light-dark(#e8f0e2,#2c3c29);--lc-gap:20px; font-family:"Segoe UI","Microsoft YaHei",sans-serif;color:var(--lc-ink);background:var(--lc-bg);font-size:14px;line-height:1.65;border-radius:12px;overflow:clip; }
+    #lifecore-social-console * {box-sizing:border-box;}
+    #lifecore-social-console [hidden] {display:none!important;}
+    #lifecore-social-console button,#lifecore-social-console select,#lifecore-social-console input {font:inherit;}
+    #lifecore-social-console button {border:1px solid var(--lc-line);border-radius:7px;padding:8px 12px;background:var(--lc-panel);color:var(--lc-ink);}
+    #lifecore-social-console button:hover {background:var(--lc-tint);}
+    #lifecore-social-console button:focus-visible,#lifecore-social-console select:focus-visible {outline:2px solid var(--lc-green);outline-offset:3px;}
+    #lifecore-social-console button[aria-pressed="true"] {background:var(--lc-tint);color:var(--lc-green);}
+    #lifecore-social-console .lc-primary {background:var(--lc-tint);color:var(--lc-green);border-color:var(--lc-line);}
+    #lifecore-social-console .lc-top {display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:20px 110px 20px 24px;border-bottom:1px solid var(--lc-line);}
+    #lifecore-social-console .lc-brand {font-size:19px;font-weight:500;letter-spacing:.03em;}
+    #lifecore-social-console .lc-muted {color:var(--lc-soft);}
+    #lifecore-social-console .lc-small {font-size:12px;}
+    #lifecore-social-console .lc-tag {display:inline-block;border-radius:20px;padding:3px 9px;background:var(--lc-tint);color:var(--lc-green);font-size:12px;}
+    #lifecore-social-console .lc-shell {display:grid;grid-template-columns:165px minmax(0,1fr);}
+    #lifecore-social-console .lc-nav {padding:22px 12px;border-right:1px solid var(--lc-line);display:flex;flex-direction:column;gap:7px;align-items:stretch;}
+    #lifecore-social-console .lc-nav button {text-align:left;border:0;background:transparent;}
+    #lifecore-social-console .lc-nav button[aria-selected="true"] {color:var(--lc-green);background:var(--lc-tint);}
+    #lifecore-social-console .lc-nav-note {margin-top:30px;padding:12px;color:var(--lc-soft);font-size:12px;}
+    #lifecore-social-console .lc-content {padding:24px;min-width:0;}
+    #lifecore-social-console h1,#lifecore-social-console h2,#lifecore-social-console h3,#lifecore-social-console p {margin:0;}
+    #lifecore-social-console h1 {font-size:24px;font-weight:500;line-height:1.35;}
+    #lifecore-social-console h2 {font-size:16px;font-weight:500;}
+    #lifecore-social-console h3 {font-size:14px;font-weight:500;}
+    #lifecore-social-console .lc-heading {display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;margin-bottom:24px;}
+    #lifecore-social-console .lc-heading p {margin-top:7px;color:var(--lc-soft);}
+    #lifecore-social-console .lc-grid {display:grid;grid-template-columns:1.35fr 1fr;gap:var(--lc-gap);align-items:start;}
+    #lifecore-social-console .lc-stack {display:grid;gap:var(--lc-gap);}
+    #lifecore-social-console .lc-card {background:var(--lc-panel);border:1px solid var(--lc-line);border-radius:11px;padding:20px;min-width:0;}
+    #lifecore-social-console .lc-card h2 {margin-bottom:14px;}
+    #lifecore-social-console .lc-row {display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+    #lifecore-social-console .lc-row+.lc-row {margin-top:12px;}
+    #lifecore-social-console .lc-rule {border-top:1px solid var(--lc-line);margin:16px 0;}
+    #lifecore-social-console .lc-large {font-size:29px;line-height:1.4;font-weight:500;}
+    #lifecore-social-console .lc-spaced {margin-top:16px;}
+    #lifecore-social-console .lc-bubble {background:var(--lc-bg);padding:14px;border-radius:8px;margin-top:12px;}
+    #lifecore-social-console .lc-bubble p {margin-top:5px;}
+    #lifecore-social-console .lc-reply {background:var(--lc-tint);}
+    #lifecore-social-console .lc-timeline {list-style:none;margin:0;padding:0;}
+    #lifecore-social-console .lc-timeline li {padding:0 0 19px 16px;border-left:1px solid var(--lc-line);}
+    #lifecore-social-console .lc-timeline li:last-child {padding-bottom:0;}
+    #lifecore-social-console .lc-timeline p {margin-top:4px;color:var(--lc-soft);font-size:12px;}
+    #lifecore-social-console .lc-actions {display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+    #lifecore-social-console .lc-select {display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+    #lifecore-social-console .lc-switch {display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px;}
+    #lifecore-social-console input[type="checkbox"] {accent-color:var(--lc-green);width:17px;height:17px;}
+    #lifecore-social-console .lc-evidence {margin-top:20px;padding:18px;border:1px solid var(--lc-line);border-radius:9px;background:var(--lc-panel);}
+    #lifecore-social-console .lc-evidence p {margin-top:10px;}
+    #lifecore-social-console .lc-node {text-align:center;background:var(--lc-panel);border:1px solid var(--lc-line);border-radius:10px;padding:16px;}
+    #lifecore-social-console .lc-edge {text-align:center;color:var(--lc-soft);padding:13px 0;font-size:12px;}
+    #lifecore-social-console .lc-foot {display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;margin-top:22px;padding-top:15px;border-top:1px solid var(--lc-line);font-size:12px;color:var(--lc-soft);}
+    #lifecore-social-console .lc-status {margin-top:16px;color:var(--lc-green);}
+    #lifecore-social-console details {margin-top:14px;}
+    #lifecore-social-console summary {color:var(--lc-green);}
+    @media(max-width:760px) {#lifecore-social-console .lc-shell {grid-template-columns:1fr;}#lifecore-social-console .lc-nav {flex-direction:row;flex-wrap:wrap;padding:12px;border-right:0;border-bottom:1px solid var(--lc-line);}#lifecore-social-console .lc-nav-note {display:none;}#lifecore-social-console .lc-content {padding:18px;}#lifecore-social-console .lc-grid {grid-template-columns:1fr;}#lifecore-social-console .lc-top {padding-left:18px;} }
+    @media(pointer:coarse) {#lifecore-social-console button {min-height:44px;} }
+  </style>
+  <header class="lc-top"><span class="lc-brand">LifeCore · 生命核心</span><span class="lc-tag">设计预览 · 示例数据</span></header>
+  <div class="lc-shell">
+    <nav class="lc-nav" role="tablist" aria-label="管理页面">
+      <button id="lc-tab-home" role="tab" aria-controls="lc-home" aria-selected="true" data-lc-tab="home" type="button">生命概览</button>
+      <button id="lc-tab-chat" role="tab" aria-controls="lc-chat" aria-selected="false" data-lc-tab="chat" type="button">会话</button>
+      <button id="lc-tab-memory" role="tab" aria-controls="lc-memory" aria-selected="false" data-lc-tab="memory" type="button">记忆与经历</button>
+      <button id="lc-tab-people" role="tab" aria-controls="lc-people" aria-selected="false" data-lc-tab="people" type="button">人物与关系</button>
+      <button id="lc-tab-growth" role="tab" aria-controls="lc-growth" aria-selected="false" data-lc-tab="growth" type="button">情绪与成长</button>
+      <button id="lc-tab-settings" role="tab" aria-controls="lc-settings" aria-selected="false" data-lc-tab="settings" type="button">连接与控制</button>
+      <div class="lc-nav-note">一个大肥鱼<br>多个会话，同一段人生</div>
+    </nav>
+    <main class="lc-content">
+      <section id="lc-home" role="tabpanel" aria-labelledby="lc-tab-home">
+        <div class="lc-heading"><div><h1>大肥鱼，现在怎么样？</h1><p>刚陪主人聊了一会儿，心境正在慢慢放松。</p></div><button type="button" data-lc-pause aria-pressed="false">暂停回复</button></div>
+        <div class="lc-grid">
+          <div class="lc-stack">
+            <article class="lc-card"><div class="lc-row"><span class="lc-muted">当前心境</span><span class="lc-tag">随经历更新</span></div><p class="lc-large lc-spaced">有些牵挂，也松了一口气。</p><p class="lc-muted lc-spaced">主人反馈“这样就好多了”。本轮仍以安静陪伴为主。</p><div class="lc-actions"><button type="button" data-lc-evidence="mood">查看这次变化</button></div></article>
+            <article class="lc-card"><h2>始终保留的两件事</h2><div class="lc-row"><span>我是大肥鱼</span><span class="lc-tag">固定身份</span></div><div class="lc-row"><span>对主人的基本信任</span><span class="lc-tag">不会演进</span></div><p class="lc-muted lc-small lc-spaced">其他性格可以缓慢变化，每次变化保留依据。</p></article>
+          </div>
+          <article class="lc-card"><h2>刚刚发生</h2><ol class="lc-timeline"><li><span class="lc-muted lc-small">20:10 · 主人私聊</span><div>收到一段倾诉</div><p>原文已保存 · 限制向小明分享</p></li><li><span class="lc-muted lc-small">20:10 · 大肥鱼</span><div>陪伴回复已发送</div><p>发送结果已确认</p></li><li><span class="lc-muted lc-small">20:11 · 后台整理</span><div>本次经历已记住</div><p>人格保持原状，证据继续积累</p></li></ol><div class="lc-actions"><button type="button" data-lc-go="memory">查看经历</button></div></article>
+        </div>
+      </section>
+      <section id="lc-chat" role="tabpanel" aria-labelledby="lc-tab-chat" hidden>
+        <div class="lc-heading"><div><h1>会话</h1><p>按交流场景分开，共用同一个大肥鱼。</p></div><button type="button" id="lc-new-session">演示会话换段</button></div>
+        <div class="lc-select" aria-label="选择聊天对象"><button type="button" data-lc-person="owner" aria-pressed="true">主人 · 私聊</button><button type="button" data-lc-person="ming" aria-pressed="false">小明 · 私聊</button></div>
+        <div class="lc-grid"><article class="lc-card"><div class="lc-row"><h2 id="lc-chat-name">与主人的对话</h2><span class="lc-tag" id="lc-session-label">会话连续</span></div><div id="lc-chat-text"><div class="lc-bubble"><span class="lc-small lc-muted">主人 · 20:10</span><p>今天项目被否了，我挺难过的。先陪我聊聊，暂时别跟小明说。</p></div><div class="lc-bubble lc-reply"><span class="lc-small">大肥鱼 · 已发送</span><p>嗯，我在。你想说说今天最难受的那一刻，还是先让我陪你待一会儿？</p></div><div class="lc-bubble"><span class="lc-small lc-muted">主人 · 20:11</span><p>这样就好多了，谢谢你。</p></div></div></article><article class="lc-card"><h2>本会话可用的材料</h2><div id="lc-chat-context"><p>固定身份与主人基本信任</p><div class="lc-rule"></div><p>当前心境与人格</p><div class="lc-rule"></div><p>主人私聊原文、本轮经历、未完话题</p></div><p class="lc-muted lc-small lc-spaced">这里展示对话读取范围，管理权限不会自动带入聊天。</p></article></div>
+      </section>
+      <section id="lc-memory" role="tabpanel" aria-labelledby="lc-tab-memory" hidden>
+        <div class="lc-heading"><div><h1>记忆与经历</h1><p>看清记住了什么，以及依据从哪里来。</p></div><span class="lc-tag">本轮已整理</span></div>
+        <div class="lc-stack"><article class="lc-card"><div class="lc-row"><h2>项目受挫后的一次陪伴</h2><span class="lc-tag">主人私聊</span></div><p>主人自述项目被否、心情失落，希望先获得陪伴；后来表示这让他感觉好一些。</p><div class="lc-actions"><button type="button" data-lc-evidence="episode">查看原文与影响</button><button type="button" id="lc-correct">演示纠正理解</button></div><p class="lc-muted lc-small lc-spaced">边界：暂不与小明分享 · 已发出的回复也属于这段经历</p></article><article class="lc-card"><h2>大肥鱼的反思</h2><p>“这一次先陪他待着，比急着给建议更合适。”</p><div class="lc-row lc-spaced"><span class="lc-tag">解释 · 非客观事实</span><span class="lc-muted lc-small">与原对话属于同一组证据</span></div></article><article class="lc-card"><h2>尚未形成的结论</h2><p id="lc-memory-claim">不能由这一次对话推出“主人永远不需要建议”。</p><p class="lc-muted lc-small lc-spaced" id="lc-correction-state">其他偏好仍需要更多经历支持。</p></article></div>
+      </section>
+      <section id="lc-people" role="tabpanel" aria-labelledby="lc-tab-people" hidden>
+        <div class="lc-heading"><div><h1>人物与关系</h1><p>关系有依据，分享有边界。</p></div><button type="button" id="lc-graph-toggle" aria-pressed="false">显示关系图</button></div>
+        <div class="lc-grid"><div id="lc-people-list" class="lc-stack"><article class="lc-card"><h2>主人</h2><div class="lc-row"><span>基本信任</span><span class="lc-tag">固定</span></div><p class="lc-muted lc-spaced">已认证的主人绑定。难过、担心或意见不同，不会改写这份信任。</p></article><article class="lc-card"><h2>小明</h2><p>已绑定联系人</p><p class="lc-muted lc-spaced">与主人的熟悉程度：当前示例没有足够依据。</p><p class="lc-muted lc-small lc-spaced">不从一次“别跟他说”推断两人关系不好。</p></article></div><div id="lc-people-graph" hidden><div class="lc-node">大肥鱼</div><div class="lc-edge">对主人：固定基本信任 ↓</div><div class="lc-node">主人</div><div class="lc-edge">与小明：尚无充分关系依据 ↓</div><div class="lc-node">小明</div><p class="lc-muted lc-small lc-spaced">线条表达不同关系；不表示分享授权。</p></div><article class="lc-card"><h2>当前分享边界</h2><p>项目受挫与本次倾诉</p><div class="lc-rule"></div><div class="lc-row"><span>接收对象：小明</span><span class="lc-tag">不可分享</span></div><p class="lc-muted lc-spaced">来源：主人明确要求“暂时别跟小明说”。</p><div class="lc-actions"><button type="button" data-lc-evidence="sharing">查看边界依据</button></div><p class="lc-muted lc-small lc-spaced">成为朋友或更加亲近，不会自动解除此限制。</p></article></div>
+      </section>
+      <section id="lc-growth" role="tabpanel" aria-labelledby="lc-tab-growth" hidden>
+        <div class="lc-heading"><div><h1>情绪与成长</h1><p>情绪即时回应经历，性格缓慢积累变化。</p></div></div>
+        <div class="lc-grid"><article class="lc-card"><h2>这一次的心境变化</h2><ol class="lc-timeline"><li>听到倾诉：担心、略感低落<p>依据：主人表达失落</p></li><li>得到反馈：逐渐释然<p>依据：主人说“这样就好多了”</p></li><li>当前：有些牵挂<p>主人基本信任保持不变</p></li></ol><label class="lc-switch"><input type="checkbox" id="lc-affect-toggle" checked>自动更新情绪</label><p class="lc-small lc-muted lc-spaced" id="lc-affect-note">新经历可以带来新的情绪贡献。</p></article><article class="lc-card"><h2>性格演进</h2><span class="lc-tag">本轮没有修改人格</span><p class="lc-spaced">正在积累：“先倾听，再给建议”的有效经历。</p><p class="lc-muted lc-small lc-spaced">一轮对话、它的反思和摘要只算一组证据。还需要其他场景的支持与反例。</p><div class="lc-rule"></div><p>可变化：偏好、习惯、其他稳定性格倾向。</p><p class="lc-spaced">固定：大肥鱼身份、对主人的基本信任。</p><label class="lc-switch"><input type="checkbox" id="lc-growth-toggle" checked>允许缓慢演进</label><p class="lc-small lc-muted lc-spaced" id="lc-growth-note">变化先通过证据和幅度检查，再保存为新版本。</p></article></div>
+      </section>
+      <section id="lc-settings" role="tabpanel" aria-labelledby="lc-tab-settings" hidden>
+        <div class="lc-heading"><div><h1>连接与控制</h1><p>运行状态与控制范围放在一起。</p></div></div><div class="lc-grid"><article class="lc-card"><h2>连接状态 · 示例</h2><div class="lc-row"><span>SnowLuma / QQ</span><span class="lc-tag">已连接</span></div><div class="lc-row"><span>DSH 会话</span><span>按场景运行</span></div><div class="lc-row"><span>生命内核</span><span>本机存储</span></div><div class="lc-row"><span>记忆整理</span><span>本轮完成</span></div><details><summary>开发诊断</summary><p class="lc-muted lc-small lc-spaced">实际产品展示连接错误、任务进度和来源版本；当前页面只演示设计，不执行连接。</p></details></article><article class="lc-card"><h2>回复控制</h2><p>暂停后继续接收获准消息，已在途发送仍核对结果。</p><div class="lc-actions"><button type="button" data-lc-pause aria-pressed="false">暂停回复</button></div><p class="lc-muted lc-small lc-spaced">恢复时处理积压，不逐条补发过时回复。</p><div class="lc-rule"></div><h2>相互独立的操作</h2><p>新会话：保留身份与长期记忆。</p><p class="lc-spaced">暂停成长：继续聊天与记忆。</p><p class="lc-spaced">删除经历：停止使用，并清理派生影响。</p></article></div>
+      </section>
+      <section class="lc-evidence" id="lc-evidence" hidden aria-label="选中内容的依据"><div class="lc-row"><h2 id="lc-evidence-title">变化依据</h2><button type="button" id="lc-evidence-close">收起</button></div><p id="lc-evidence-text"></p><p class="lc-muted lc-small" id="lc-evidence-effect"></p></section>
+      <div class="lc-status lc-small" id="lc-feedback" role="status" aria-live="polite"></div>
+      <footer class="lc-foot"><span>示例操作仅改变预览</span><span>身份延续 · 经历可查 · 变化有据</span></footer>
+    </main>
+  </div>
+  <script>
+    (() => {
+      const root = document.getElementById('lifecore-social-console');
+      const q = s => root.querySelector(s);
+      const all = s => [...root.querySelectorAll(s)];
+      const pages = ['home','chat','memory','people','growth','settings'];
+      const state = {page:'home', person:'owner', paused:false, growth:true, affect:true, graph:false, corrected:false, rotated:false};
+      const options = {density:'舒适'};
+      const messages = {
+        owner:'<div class="lc-bubble"><span class="lc-small lc-muted">主人 · 20:10</span><p>今天项目被否了，我挺难过的。先陪我聊聊，暂时别跟小明说。</p></div><div class="lc-bubble lc-reply"><span class="lc-small">大肥鱼 · 已发送</span><p>嗯，我在。你想说说今天最难受的那一刻，还是先让我陪你待一会儿？</p></div><div class="lc-bubble"><span class="lc-small lc-muted">主人 · 20:11</span><p>这样就好多了，谢谢你。</p></div>',
+        ming:'<div class="lc-bubble"><span class="lc-small lc-muted">小明 · 20:15</span><p>晚上一起打游戏吗？</p></div><div class="lc-bubble lc-reply"><span class="lc-small">大肥鱼 · 已发送</span><p>今晚想轻松一点，玩两局吧。</p></div>'
+      };
+      const evidence = {
+        mood:['心境变化的依据','主人：“这样就好多了，谢谢你。”','变化：从担心到逐渐释然。本轮人格未变，主人基本信任未变。'],
+        episode:['原文 → 记忆 → 影响','主人：“今天项目被否了，我挺难过的。先陪我聊聊，暂时别跟小明说。”','记忆：本次想获得陪伴。影响：担心与陪伴策略；不是永久偏好，也不证明与小明不熟。'],
+        sharing:['分享边界的依据','主人：“暂时别跟小明说。”','范围：本次项目受挫和倾诉；对象：小明。关系变好不会自动扩大分享范围。']
+      };
+      function render() {
+        all('[data-lc-tab]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.lcTab===state.page)));
+        pages.forEach(p=>q('#lc-'+p).hidden=p!==state.page);
+        all('[data-lc-pause]').forEach(b=>{b.textContent=state.paused?'恢复回复':'暂停回复';b.setAttribute('aria-pressed',String(state.paused));});
+        all('[data-lc-person]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lcPerson===state.person)));
+        q('#lc-chat-name').textContent=state.person==='owner'?'与主人的对话':'与小明的对话';
+        q('#lc-chat-text').innerHTML=messages[state.person];
+        q('#lc-chat-context').innerHTML=state.person==='owner'?'<p>固定身份与主人基本信任</p><div class="lc-rule"></div><p>当前心境与人格</p><div class="lc-rule"></div><p>主人私聊原文、本轮经历、未完话题</p>':'<p>同一身份与允许共享的心境、人格</p><div class="lc-rule"></div><p>与小明的关系及本场景记忆</p><div class="lc-rule"></div><p>不包含主人私聊原文、项目细节和情绪原因</p>';
+        q('#lc-session-label').textContent=state.rotated?'已换段 · 状态延续':'会话连续';
+        q('#lc-growth-toggle').checked=state.growth;
+        q('#lc-affect-toggle').checked=state.affect;
+        q('#lc-growth-note').textContent=state.growth?'变化先通过证据和幅度检查，再保存为新版本。':'已暂停演进；聊天与记忆整理继续。';
+        q('#lc-affect-note').textContent=state.affect?'新经历可以带来新的情绪贡献。':'暂停新情绪贡献；已有心境仍按时间规则缓和。';
+        q('#lc-people-list').hidden=state.graph;
+        q('#lc-people-graph').hidden=!state.graph;
+        q('#lc-graph-toggle').textContent=state.graph?'显示人物列表':'显示关系图';
+        q('#lc-graph-toggle').setAttribute('aria-pressed',String(state.graph));
+        q('#lc-memory-claim').textContent=state.corrected?'修订：主人这一次希望先获得陪伴，长期偏好尚未确定。':'不能由这一次对话推出“主人永远不需要建议”。';
+        q('#lc-correction-state').textContent=state.corrected?'演示结果：旧概括停止使用；相关依据已重算，人格保持不变。':'其他偏好仍需要更多经历支持。';
+        root.style.setProperty('--lc-gap',options.density==='紧凑'?'12px':'20px');
+      }
+      function persist() {const host=window.openai;if(host&&typeof host.setWidgetState==='function')host.setWidgetState({modelContent:{page:state.page,person:state.person},privateContent:{...state}}).catch(()=>{});}
+      function restore(saved) {const s=saved&&saved.privateContent;if(!s)return;if(pages.includes(s.page))state.page=s.page;if(['owner','ming'].includes(s.person))state.person=s.person;['paused','growth','affect','graph','corrected','rotated'].forEach(k=>{if(typeof s[k]==='boolean')state[k]=s[k];});render();}
+      root.addEventListener('click',e=>{
+        const b=e.target.closest('button');if(!b||!root.contains(b))return;
+        if(b.dataset.lcTab||b.dataset.lcGo){state.page=b.dataset.lcTab||b.dataset.lcGo;q('#lc-evidence').hidden=true;q('#lc-feedback').textContent='';}
+        if(b.dataset.lcPerson){state.person=b.dataset.lcPerson;q('#lc-evidence').hidden=true;}
+        if(b.hasAttribute('data-lc-pause')){state.paused=!state.paused;q('#lc-feedback').textContent=state.paused?'预览：新回复已暂停，消息仍可接收。':'预览：回复恢复，积压按恢复规则处理。';}
+        if(b.dataset.lcEvidence){const x=evidence[b.dataset.lcEvidence];q('#lc-evidence-title').textContent=x[0];q('#lc-evidence-text').textContent=x[1];q('#lc-evidence-effect').textContent=x[2];q('#lc-evidence').hidden=false;}
+        if(b.id==='lc-evidence-close')q('#lc-evidence').hidden=true;
+        if(b.id==='lc-graph-toggle')state.graph=!state.graph;
+        if(b.id==='lc-correct'){state.corrected=true;q('#lc-feedback').textContent='预览：纠正的是理解，原始对话仍保留。';}
+        if(b.id==='lc-new-session'){state.rotated=true;q('#lc-feedback').textContent='预览：执行会话换段，身份、信任、人格、获准记忆和未完话题继续。';}
+        render();persist();
+      });
+      q('#lc-growth-toggle').addEventListener('change',e=>{state.growth=e.target.checked;render();persist();});
+      q('#lc-affect-toggle').addEventListener('change',e=>{state.affect=e.target.checked;render();persist();});
+      render();restore(window.openai&&window.openai.widgetState);
+      window.addEventListener('openai:set_globals',e=>restore(e.detail&&e.detail.globals&&e.detail.globals.widgetState));
+      if(globalThis.Tweak){const tweak=new Tweak({container:root,onChange:render});tweak.addSelect(options,'density',{label:'信息间距',options:['舒适','紧凑']});}
+    })();
+  </script>
+</div>
