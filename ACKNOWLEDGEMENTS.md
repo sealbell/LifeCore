@@ -55,6 +55,8 @@ LifeCore 当前处于设计与文档阶段，尚无可运行插件。下文的�
 | [NapNeko/NapCatQQ](https://github.com/NapNeko/NapCatQQ) | 普通 QQ 账号的 OneBot 接入、头像与空间动作 | [98d781d1](https://github.com/NapNeko/NapCatQQ/commit/98d781d19815d1625b24d717ce280ecf0a4f6d0c)；自主生活修订中的首个真机验证目标，外部运行时，不随 LifeCore 打包 |
 | [SnowLuma/SnowLuma](https://github.com/SnowLuma/SnowLuma) | OneBot、多账号、请求关联/重连、头像与空间动作 | 初读 [8ffd3142](https://github.com/SnowLuma/SnowLuma/commit/8ffd314260e9e2b6967eeca494d87aa5be046c34)（2.2.1）；后续 [c120b0fb](https://github.com/SnowLuma/SnowLuma/commit/c120b0fb9790a3b41a18f4acfdb49f7f5b02022e)。可替换外部适配候选，不打包 |
 
+2026-11-03 补充核查：qq-bridge 固定到 `b80fa51bc03fc4d5a1ef9a4cad7029e796b8fc67`（package.json 为 0.2.1-r2），核对 DSH 会话投递/订阅、二代内部输出与工具发送、轻量记忆和会话退役。详见[固定版本核查记录](docs/architecture/references/2026-11-03-qq-bridge-session-review.md)。当前版本声明 PolyForm Noncommercial 1.0.0；此次未复制产品代码，不能将早期发行版许可套用于当前源码。
+
 维护者后续已明确选择 **DSH + SnowLuma 普通 QQ**，作为 [v0.1 预览](docs/v0.1-quickstart.md)的实现路线；此前 NapCat 优先、官方 Bot 首发等建议被此次选择覆盖。早期不同路线的研究仍保留，详见[平台调研](docs/architecture/references/2026-11-01-platform-research.md)和 [SnowLuma 早期调研](docs/architecture/references/snowluma.md)。外部网关不随插件打包，真实账号仍需验收。
 
 ## 基础组件与产品体验参考
