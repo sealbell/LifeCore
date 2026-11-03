@@ -6,6 +6,8 @@ A DeepSeek Harness plugin for persistent identity, memory, and gradual personali
 
 [中文](README.md) · [Architecture V1 (Chinese)](docs/architecture/v1.md) · [Module discussion guide (Chinese)](docs/architecture/discussions.md) · [Project design (Chinese)](docs/project-design.md) · [References and acknowledgements (Chinese)](ACKNOWLEDGEMENTS.md)
 
+November 3 design archive (Chinese): [progress by module and open decisions](docs/architecture/2026-11-03-design-progress.md), [QQ, memory, and session continuity](docs/superpowers/specs/2026-11-03-qq-memory-session-growth-design.md), [relationships, emotion, and personality updates](docs/superpowers/specs/2026-11-03-social-affect-growth-ui-design.md), and [interactive UI mockup](docs/design-previews/2026-11-03-social-console/README.md). Identity as 大肥鱼 and trust in the bound owner are fixed; other traits may evolve gradually. Cross-scene mood sharing remains a proposal. These are design deliverables, not implemented functionality.
+
 Planning references (Chinese): [first-release requirements for all 15 modules](docs/requirements/v1-requirements.md), [architecture and data flows](docs/architecture/v1-data-flow.md), and [overview image](docs/architecture/assets/v1-architecture-overview.png). Release scope and technical choices remain under discussion.
 
 Current design discussion (2026-11-02): [baseline, responsibilities, and open decisions (Chinese)](docs/superpowers/specs/2026-11-02-design-baseline-and-responsibilities.md) and [DSH plugin reuse evidence (Chinese)](docs/architecture/references/2026-11-02-dsh-plugin-reuse.md). The current phase clarifies the complete behavior, module boundaries, and reuse options before further implementation. These drafts do not approve a new architecture or plugin selection.

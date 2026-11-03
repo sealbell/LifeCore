@@ -6,6 +6,14 @@ A DeepSeek Harness plugin for persistent identity, memory, and gradual personali
 
 [English](README.en.md) · [架构 V1](docs/architecture/v1.md) · [模块讨论指南](docs/architecture/discussions.md) · [项目总体设计](docs/project-design.md) · [参考项目与致谢](ACKNOWLEDGEMENTS.md)
 
+今日归档：[11 月 3 日按模块进度与待定事项](docs/architecture/2026-11-03-design-progress.md) · [Web UI 交互草图及截图](docs/design-previews/2026-11-03-social-console/README.md)。本次为设计材料提交，未接入真实新功能。
+
+当前聚焦：[QQ、记忆、会话切换、情绪与人格演进的一条闭环](docs/superpowers/specs/2026-11-03-qq-memory-session-growth-design.md)。按用户最新要求先完成这条链的设计与后续验证，视频等能力暂缓；具体机制仍待审阅。
+
+最新细化：[关系、情绪、人格与记忆的完整聊天示例及 Web UI](docs/superpowers/specs/2026-11-03-social-affect-growth-ui-design.md)。身份与对主人的基本信任不变，其他性格可缓慢演进；说明每步职责、复用/自研、误判纠正与六页管理界面，尚未产品实现。
+
+2026-11-03：[全模块运行设计与用户体验汇报](docs/superpowers/specs/2026-11-03-full-system-design-report.md)。集中说明十五模块的数据处理、逻辑链、用户控制与技术取舍，补充生活成长和能力体验建议；待审阅，未开始本轮产品开发。
+
 开发讨论入口：[第一版十五模块需求单](docs/requirements/v1-requirements.md) · [完整架构与数据流](docs/architecture/v1-data-flow.md) · [架构总览图片](docs/architecture/assets/v1-architecture-overview.png)。需求范围和技术选型仍待会议确认。
 
 当前设计梳理入口（2026-11-02）：[基线、职责与待决事项](docs/superpowers/specs/2026-11-02-design-baseline-and-responsibilities.md) · [DSH 插件复用候选与证据](docs/architecture/references/2026-11-02-dsh-plugin-reuse.md)。当前先统一完整逻辑、模块边界和复用方案，再安排后续开发；这两份讨论稿不代表新架构或插件选型已经批准。
